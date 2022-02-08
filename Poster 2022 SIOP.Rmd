@@ -1,0 +1,84 @@
+---
+title: Generate Reproducible & Live HTML and PDF Conference Posters Using RMarkdown
+author:
+  - name: Brent Thorne
+    affil: 1
+    orcid: '0000-0002-1099-3857'
+  - name: Another G. Author
+    affil: 2
+affiliation:
+  - num: 1
+    address: Department of Earth Science, Brock University
+  - num: 2
+    address: Department of Graphics and Layouts, University of Posters; Canada
+column_numbers: 3
+logoright_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+logoleft_name: https&#58;//raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png
+output: 
+  posterdown::posterdown_html:
+    self_contained: false
+bibliography: packages.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction
+
+The roots of employee (aka work; e.g., Schaufeli & Bakker, 2010) engagement research likely started with theoretical expansions of forms of employee participation (see, for example, Ferris & Hellier, 1984) and job involvement (e.g., Elloy, Everett, & Flynn, 1991). This exploration extended into broader considerations of attitudes and emotions (Staw, Sutton, & Pelled, 1994) and were informed by further exploration of the dimensionality of constructs such as organizational commitment (Meyer & Allen, 1991). The 1990’s saw focused development and refinement (for example, a dissertation; Leone [1995] or actual semantic reference; Kahn [1990]). Staw et al. (1994) investigated the relationships between positive emotions and favorable work outcomes, and although they do not use the word, “engagement”, their distinction between felt and expressed emotion likely held influence upon the burgeoning interest in the engagement construct.
+
+## Engagement 
+
+Although occasionally referred to as residing on the opposing pole to burnout (Maslach & Leiter, 2008), these two constructs are currently most commonly conceptualized as being distinct (Goering, Shimazu, Zhou, Wada, & Sakai, 2017; Kim, Shin, & Swanger, 2009; Schaufeli, Taris, & Van Rhenen, 2008; Timms, Brough, & Graham, 2012), although certainly not universally (Cole, Walter, Bedeian, & O’Boyle, 2012; Taris, Ybema, & Beek, 2017). Comparing the two, Goering et al. (2017) concluded that they have a moderate (negative) association, but also distinct nomological networks. Schaufeli et al. (2008) investigated both internal and external association indicators, concluding that engagement and burnout (as well as workaholism) should be considered three distinct constructs.
+Burnout can be defined as a psychological syndrome characterized by exhaustion (low energy), cynicism (low involvement), and inefficacy (low self-efficacy), which is experienced in response to chronic job stressors (e.g., Leiter & Maslach, 2004; Maslach & Leiter, 1997). Alternatively, engagement refers to an individual worker’s involvement and satisfaction as well as enthusiasm for work (Harter, Schmidt, & Hayes, 2002). Schaufeli and Bakker (2003) further specify a “positive, fulfilling, work-related state of mind that is characterized by vigor, dedication, and absorption” (p. 74). Via their conceptualization, vigor is described as high levels of energy and mental resilience while working. Dedication refers to being strongly involved in one’s work and experiencing a sense of significance, enthusiasm, inspiration, pride, and challenge. Absorption is characterized by being fully concentrated and happily engrossed in one’s work, whereby time passes quickly and one has difficulties with detaching oneself from work (Schaufeli, Salanova, González-Romá, & Bakker, 2002). The dimension of absorption has been noted as being influenced in conceptual specification by (Csikszentmihalyi, 1990)’s concept of “flow”.
+
+Like many other constructs within the psychology literature, our knowledge of engagement has been at least partially informed by its measurement and documented association  with other work attitudes and behaviors. There are currently many engagement scales used for either academic or applied purposes (and sometimes both). In addition to the aforementioned Gallup Q12, popular measures include the Utrecht Work Engagement Scale (UWES; Schaufeli et al., 2002), the ISA engagement scale (Phuangthuean et al., 2018), the Saks (2006; 2019) scale, and May et al. (2004) scale. These scales differ in the number and content of dimensions. For example, the ISA divides engagement into intellectual, social, and affective components. Saks specifies two scales. The Utrecht Work Engagement Scale (UWES) has been subject to criticism focused on the three subscales (vigor, dedication, and absorption) being so highly correlated that it may be argued that a unidimensional structure may be a better structural representation than the three-factor model (Kulikowski, 2017; Willmer et al., 2019). 
+
+We retain the vigor-dedication-absorption structure put forth in Schaufeli et al. (2002) and also specified in the UWES as the foundation for our construct definition. This model is not without criticism, however. Some researchers have questioned its structural validity by pointing out that vigor, dedication and absorption all correlate highly with each other (Kulikowski, 2017). We believe that some of the inter-construct association may be able to be accounted for when attitudinal components are additionally and simultaneously recognized. That is, it is possible that the constructs have distinction but the most commonly leveraged measure does not. The current study focuses on a new measure of engagement that crosses the substantive construct dimensions of vigor, dedication, and absorption with the attitudinal components of affect, cognition, and behavior.
+
+Engagement as an attitude. The first (to our knowledge) use of the word “engagement” as a construct of organizational relevance came with Kahn (1990), who defined engagement as: “the harnessing of organization members’ selves to their work roles; in engagement, people employ and express themselves physically, cognitively, and emotionally during role performances.” Although this definition was quickly outpaced by subsequent respecifications (see, for example, Baumruk, 2004 and Shaw, 2005), Kahn (1990)’s definition is notable in that it conforms to the then-ascendant tripartite model of attitudes proposed by Rosenberg (1960). This model frames attitudes as latent variables that manifest cognitively, affectively and behaviorally. Even though it is not specifically a work engagement model, the tripartite model has helped researchers define and deconstruct attitudes to gain a better understanding of individuals’ reactions towards specific attitude objects (Kaiser and Wilson, 2019). 
+
+# Current Study
+
+Our presentation investigates the impact of item ordering on factor structure, and we do so from the unique perspective of an instrument that is intentionally saturated with two different structural components: 1) an attitudinal structure, and 2) a substantive construct structure. This structure permits the strategic ordering of items to respondents such that one structure may be emphasized over the other. 
+Regarding the substantive structure, this measure operationalizes work engagement as a mental state wherein employees: a) feel energized (Vigor), b) are enthusiastic about the content of their work and the things they do (Dedication), and c) are so immersed in their work activities that time seems compressed (Absorption). The attitudinal structure is comprised of three components: d) feeling (e.g., affect), e) thought (e.g., cognition), and f) action (e.g., behavior). Development and construct validation of this 18-item measure of engagement is described in Russell et al. (2022) whereas the current study focuses on administrative response cues in the form of order of item presentation. The expectation is that either model (attitudinal or substantive) will exhibit stronger factorial validity when item administration parallels latent structure.
+
+# Methods
+
+## Participants
+Data was obtained from two sources. In the first sampling, 282 individuals responded to a snowball sampling initiated by Industrial and Organizational Psychology faculty and graduate students. There were four counterbalanced orderings of item presentations within this administration, as well as an additional 18 contextual items - this sample constituted the original scale development sample, and at the time of administration the additional contextual items were candidates for item retention. In the second data collection initiative, Qualtrics panels were solicited. These US workforce representative adults responded to two counterbalanced orderings of the focal 18 items along with 2 additional contextual items. These Qualtrics respondents included 343 who responded to attitudinally clustered items and 404 who responded to substantively clustered items.
+
+## Materials
+Our 18-item engagement measure was crafted to be intentionally complex (each item is intended to load on two constructs). This complexity, however, derives from a crossing of the attitudinal components of affect, cognition, and behavior with the substantive engagement components of vigor, dedication, and absorption. The 6-point response scale is: Strongly Disagree, Disagree, Somewhat Disagree, Somewhat Agree, Agree, Strongly Agree. The item stems as well as their intended scale associations are presented in Table 1.
+
+# Results
+
+Usually you want to have a nice table displaying some important results that you have calculated. In `posterdown` this is as easy as using the `kable` table formatting you are probably use to as per typical R Markdown formatting.
+
+You can reference tables like so: Table \@ref(tab:mytable). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat augue at velit tincidunt semper. Donec elementum porta posuere. Nullam interdum, odio at tincidunt feugiat, turpis nisi blandit eros, eu posuere risus felis non quam. Nam eget lorem odio. Duis et aliquet orci. Phasellus nec viverra est.
+
+```{r mytable, out.width='80%'}
+knitr::kable(iris[1:10, 1:4], caption = 'Table caption.',align = 'c',"html")
+```
+
+Or with figures: Figure \@ref(fig:standard-plot), or Figure \@ref(fig:morefigs).
+
+
+```{r morefigs, out.width='80%', echo=TRUE, fig.cap='Amazing, right?!', fig.height=5}
+
+```
+
+# Next Steps
+
+Aliquam sed faucibus risus, quis efficitur erat. Vestibulum semper mauris quis tempus eleifend. Aliquam sagittis dictum ipsum, quis viverra ligula eleifend ut. Curabitur sagittis vitae arcu eget faucibus. In non elementum felis. Duis et aliquam nunc. Nunc pulvinar sapien nunc, vel pretium nisi efficitur in. Fusce fringilla maximus leo et maximus. Fusce at ligula laoreet, iaculis mi at, auctor odio. Praesent sed elementum justo. Aenean consectetur risus rhoncus tincidunt efficitur. Praesent dictum mauris at diam maximus maximus [@R-posterdown].
+
+# Conclusion
+
+Try `posterdown` out! Hopefully you like it!
+
+```{r, include=FALSE}
+knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
+```
+
+# References
