@@ -33,10 +33,6 @@ The roots of employee (aka work; e.g., Schaufeli & Bakker, 2010) engagement rese
 Although occasionally referred to as residing on the opposing pole to burnout (Maslach & Leiter, 2008), these two constructs are currently most commonly conceptualized as being distinct (Goering, Shimazu, Zhou, Wada, & Sakai, 2017; Kim, Shin, & Swanger, 2009; Schaufeli, Taris, & Van Rhenen, 2008; Timms, Brough, & Graham, 2012), although certainly not universally (Cole, Walter, Bedeian, & O’Boyle, 2012; Taris, Ybema, & Beek, 2017). Comparing the two, Goering et al. (2017) concluded that they have a moderate (negative) association, but also distinct nomological networks. Schaufeli et al. (2008) investigated both internal and external association indicators, concluding that engagement and burnout (as well as workaholism) should be considered three distinct constructs.
 Burnout can be defined as a psychological syndrome characterized by exhaustion (low energy), cynicism (low involvement), and inefficacy (low self-efficacy), which is experienced in response to chronic job stressors (e.g., Leiter & Maslach, 2004; Maslach & Leiter, 1997). Alternatively, engagement refers to an individual worker’s involvement and satisfaction as well as enthusiasm for work (Harter, Schmidt, & Hayes, 2002). Schaufeli and Bakker (2003) further specify a “positive, fulfilling, work-related state of mind that is characterized by vigor, dedication, and absorption” (p. 74). Via their conceptualization, vigor is described as high levels of energy and mental resilience while working. Dedication refers to being strongly involved in one’s work and experiencing a sense of significance, enthusiasm, inspiration, pride, and challenge. Absorption is characterized by being fully concentrated and happily engrossed in one’s work, whereby time passes quickly and one has difficulties with detaching oneself from work (Schaufeli, Salanova, González-Romá, & Bakker, 2002). The dimension of absorption has been noted as being influenced in conceptual specification by (Csikszentmihalyi, 1990)’s concept of “flow”.
 
-Like many other constructs within the psychology literature, our knowledge of engagement has been at least partially informed by its measurement and documented association  with other work attitudes and behaviors. There are currently many engagement scales used for either academic or applied purposes (and sometimes both). In addition to the aforementioned Gallup Q12, popular measures include the Utrecht Work Engagement Scale (UWES; Schaufeli et al., 2002), the ISA engagement scale (Phuangthuean et al., 2018), the Saks (2006; 2019) scale, and May et al. (2004) scale. These scales differ in the number and content of dimensions. For example, the ISA divides engagement into intellectual, social, and affective components. Saks specifies two scales. The Utrecht Work Engagement Scale (UWES) has been subject to criticism focused on the three subscales (vigor, dedication, and absorption) being so highly correlated that it may be argued that a unidimensional structure may be a better structural representation than the three-factor model (Kulikowski, 2017; Willmer et al., 2019). 
-
-We retain the vigor-dedication-absorption structure put forth in Schaufeli et al. (2002) and also specified in the UWES as the foundation for our construct definition. This model is not without criticism, however. Some researchers have questioned its structural validity by pointing out that vigor, dedication and absorption all correlate highly with each other (Kulikowski, 2017). We believe that some of the inter-construct association may be able to be accounted for when attitudinal components are additionally and simultaneously recognized. That is, it is possible that the constructs have distinction but the most commonly leveraged measure does not. The current study focuses on a new measure of engagement that crosses the substantive construct dimensions of vigor, dedication, and absorption with the attitudinal components of affect, cognition, and behavior.
-
 Engagement as an attitude. The first (to our knowledge) use of the word “engagement” as a construct of organizational relevance came with Kahn (1990), who defined engagement as: “the harnessing of organization members’ selves to their work roles; in engagement, people employ and express themselves physically, cognitively, and emotionally during role performances.” Although this definition was quickly outpaced by subsequent respecifications (see, for example, Baumruk, 2004 and Shaw, 2005), Kahn (1990)’s definition is notable in that it conforms to the then-ascendant tripartite model of attitudes proposed by Rosenberg (1960). This model frames attitudes as latent variables that manifest cognitively, affectively and behaviorally. Even though it is not specifically a work engagement model, the tripartite model has helped researchers define and deconstruct attitudes to gain a better understanding of individuals’ reactions towards specific attitude objects (Kaiser and Wilson, 2019). 
 
 # Current Study
@@ -58,16 +54,275 @@ Usually you want to have a nice table displaying some important results that you
 
 You can reference tables like so: Table \@ref(tab:mytable). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat augue at velit tincidunt semper. Donec elementum porta posuere. Nullam interdum, odio at tincidunt feugiat, turpis nisi blandit eros, eu posuere risus felis non quam. Nam eget lorem odio. Duis et aliquet orci. Phasellus nec viverra est.
 
-```{r mytable, out.width='80%'}
-knitr::kable(iris[1:10, 1:4], caption = 'Table caption.',align = 'c',"html")
+```{r, echo=FALSE, results='hide', warning=FALSE}
+# Loading packages
+library(tidyverse)
+
+# Importing Data from Qualtrics 
+temp <- read.csv("qualtrics_pilot_data.csv", header=FALSE, na.strings="")
+
+# Creating Header Columns
+x <- temp[2,] # Takes row 2 and places it into an object
+data <- temp[-c(1:3),] # Remove row 1 to 2
+colnames(data) <- x # turn row 2 from line 5 into header of dataframe
+
+num <- nrow(data) # Tells us how many participants we have in our dataset
+
+################ Cleaning up data and combining the four condition into one ################
+
+data$Cond1 <- rowSums(is.na(data[18:53])) # counts how many na's occur between columns 18 to 53
+data$Cond2 <- rowSums(is.na(data[54:89]))
+data$Cond3 <- rowSums(is.na(data[90:125]))
+data$Cond4 <- rowSums(is.na(data[126:161]))
+
+# Determing what is the condition, if they have less than 36 NA, then that is there condition
+data$Condition[data$Cond1 < 36] <- 1
+data$Condition[data$Cond2 < 36] <- 2
+data$Condition[data$Cond3 < 36] <- 3
+data$Condition[data$Cond4 < 36] <- 4
+
+# Splitting the Conditions
+cond1 <- data[ which(data$Condition==1), ]
+cond2 <- data[ which(data$Condition==2), ]
+cond3 <- data[ which(data$Condition==3), ]
+cond4 <- data[ which(data$Condition==4), ]
+
+cond1.red <- cond1[,c(6, 18:53, 162:165, 171)]  ## using Cond1 ordering
+cond2.red <- cond2[,c(6, 62:65, 70:73, 82:85, 58:61, 74:77, 86:89, 66:69, 78:81, 54:57, 162:165, 171)]
+cond3.red <- cond3[,c(6, 94:97, 106:109, 118:121, 98:101, 110:113, 122:125, 102:105, 114:117, 90:93, 162:165, 171)]
+cond4.red <- cond4[,c(6, 138:161, 130:137, 126:129, 162:165, 171)]
+
+## Getting rid of condition markers so rbind will work
+names(cond1.red) = gsub(pattern = "C*.* - ", replacement = "", x = names(cond1.red))     
+names(cond2.red) = gsub(pattern = "C*.* - ", replacement = "", x = names(cond2.red))  
+names(cond3.red) = gsub(pattern = "C*.* - ", replacement = "", x = names(cond3.red))  
+names(cond4.red) = gsub(pattern = "C*.* - ", replacement = "", x = names(cond4.red))  
+
+together <- rbind(cond1.red, cond2.red, cond3.red, cond4.red)
+
+i <- c(1:37)
+together[ , i] <- apply(together[ , i], 2,            # Specify own function within apply
+                        function(x) as.numeric(as.character(x)))
+
+#write.csv(together, "together.csv")
+
+################## Recoding items #########################
+together$`Most days, I feel happiest when the workday is soon to be complete.` <- 7 - together$`Most days, I feel happiest when the workday is soon to be complete.`
+together$`This job drains my energy.` <- 7 - together$`This job drains my energy.`
+
+## BEHAVIORAL (NONE):
+
+## COGNITIVE: 
+
+together$`Thinking about work saps my energy.` <- 7 - together$`Thinking about work saps my energy.`
+together$`I often think about finding another job.` <- 7 - together$`I often think about finding another job.`
+
+
+###Condition 1
+
+
+Cond1_Model<-cond1.red[,2:37]
+
+Cond1_Model<-Cond1_Model%>%rename(
+  Item_1=`Iâ€™m able to concentrate on my work without distractions.`,
+  Item_2=`I have a hard time detaching mentally from my work.`,
+  Item_3=`Time passes quickly while Iâ€™m working.`,
+  Item_4=`I find it difficult to mentally disconnect from work.`,
+  Item_5=`I enjoy thinking about work even when Iâ€™m not at work.`,
+  Item_6=`Most days, I feel happiest when the workday is soon to be complete.`,
+  Item_7=`I am happiest when I am immersed in a project.`,
+  Item_8=`I love starting my workday.`,
+  Item_9=`I devote more time than is expected of me.`,
+  Item_10=`I have to be reminded to take breaks while Iâ€™m at work.`,
+  Item_11=`I never miss a work deadline.`,
+  Item_12=`I never allow distractions to interfere with my work.`,
+  Item_13=`I devote my full attention to my work tasks throughout the day.`,
+  Item_14=`Thinking about work saps my energy.`,
+  Item_15=`I would rather direct my focus toward a work task than a personal task.`,
+  Item_16=`Iâ€™m able to maintain good levels of energy throughout the workday.`,
+  Item_17=`I enjoy spending time completing my job tasks.`,
+  Item_18=`Most days I feel enthusiastic about starting my work day.`,
+  Item_19=`I feel motivated to go beyond what is asked of me.`,
+  Item_20=`This job drains my energy.`,
+  Item_21=`When work is slow I find ways to be productive.`,
+  Item_22=`I express enthusiasm for my job while at work.`,
+  Item_23=`I try my best to perform well at work.`,
+  Item_24=`If I notice my energy level is low, I take corrective steps to re-energize.`,
+  Item_25=`I plan my future with this company.`,
+  Item_26=`I believe this company cares about my career goals.`,
+  Item_27=`I often think about finding another job.`,
+  Item_28=`This organization challenges me to work at my full potential.`,
+  Item_29=`I am proud to be a member of this organization.`,
+  Item_30=`I feel supported by my supervisor when I fail at a task.`,
+  Item_31=`I feel proud of my accomplishments within this organization.`,
+  Item_32=`My job makes me feel like Iâ€™m part of something meaningful.`,
+  Item_33=`I make valued contributions to the organization.`,
+  Item_34=`I embrace challenging situations at work.`,
+  Item_35=`I speak positively about this organization to others.`,
+  Item_36=`This organization provides the resources necessary for me to successfully perform my job.`
+) %>% 
+  select(Item_1,Item_2,Item_3,Item_4,Item_5,Item_6,Item_7,Item_8,Item_9,Item_10,Item_11,Item_12,Item_13,Item_14,Item_15,Item_16,Item_17,
+         Item_18,Item_19,Item_20,Item_21,Item_22,Item_23,Item_24,Item_25,Item_26,Item_27,Item_28,Item_29,Item_30,Item_31,Item_32,Item_33,
+         Item_34,Item_35,Item_36) %>% 
+  mutate(across(c("Item_1":"Item_36"),~as.numeric(.)))
+
+
+
+# Condition2 _________________________________________________________________________________________
+Cond2_Model<-cond2.red[,2:37]
+
+Cond2_Model<-Cond2_Model%>%rename(
+  Item_1=`Iâ€™m able to concentrate on my work without distractions.`,
+  Item_2=`I have a hard time detaching mentally from my work.`,
+  Item_3=`Time passes quickly while Iâ€™m working.`,
+  Item_4=`I find it difficult to mentally disconnect from work.`,
+  Item_5=`I enjoy thinking about work even when Iâ€™m not at work.`,
+  Item_6=`Most days, I feel happiest when the workday is soon to be complete.`,
+  Item_7=`I am happiest when I am immersed in a project.`,
+  Item_8=`I love starting my workday.`,
+  Item_9=`I devote more time than is expected of me.`,
+  Item_10=`I have to be reminded to take breaks while Iâ€™m at work.`,
+  Item_11=`I never miss a work deadline.`,
+  Item_12=`I never allow distractions to interfere with my work.`,
+  Item_13=`I devote my full attention to my work tasks throughout the day.`,
+  Item_14=`Thinking about work saps my energy.`,
+  Item_15=`I would rather direct my focus toward a work task than a personal task.`,
+  Item_16=`Iâ€™m able to maintain good levels of energy throughout the workday.`,
+  Item_17=`I enjoy spending time completing my job tasks.`,
+  Item_18=`Most days I feel enthusiastic about starting my work day.`,
+  Item_19=`I feel motivated to go beyond what is asked of me.`,
+  Item_20=`This job drains my energy.`,
+  Item_21=`When work is slow I find ways to be productive.`,
+  Item_22=`I express enthusiasm for my job while at work.`,
+  Item_23=`I try my best to perform well at work.`,
+  Item_24=`If I notice my energy level is low, I take corrective steps to re-energize.`,
+  Item_25=`I plan my future with this company.`,
+  Item_26=`I believe this company cares about my career goals.`,
+  Item_27=`I often think about finding another job.`,
+  Item_28=`This organization challenges me to work at my full potential.`,
+  Item_29=`I am proud to be a member of this organization.`,
+  Item_30=`I feel supported by my supervisor when I fail at a task.`,
+  Item_31=`I feel proud of my accomplishments within this organization.`,
+  Item_32=`My job makes me feel like Iâ€™m part of something meaningful.`,
+  Item_33=`I make valued contributions to the organization.`,
+  Item_34=`I embrace challenging situations at work.`,
+  Item_35=`I speak positively about this organization to others.`,
+  Item_36=`This organization provides the resources necessary for me to successfully perform my job.`
+) %>% 
+  select(Item_1,Item_2,Item_3,Item_4,Item_5,Item_6,Item_7,Item_8,Item_9,Item_10,Item_11,Item_12,Item_13,Item_14,Item_15,Item_16,Item_17,
+         Item_18,Item_19,Item_20,Item_21,Item_22,Item_23,Item_24,Item_25,Item_26,Item_27,Item_28,Item_29,Item_30,Item_31,Item_32,Item_33,
+         Item_34,Item_35,Item_36)
+
+
+# Condition 3 _________________________________________________________________________________________
+Cond3_Model<-cond3.red[,2:37]
+
+Cond3_Model<-Cond3_Model%>%rename(
+  Item_1=`Iâ€™m able to concentrate on my work without distractions.`,
+  Item_2=`I have a hard time detaching mentally from my work.`,
+  Item_3=`Time passes quickly while Iâ€™m working.`,
+  Item_4=`I find it difficult to mentally disconnect from work.`,
+  Item_5=`I enjoy thinking about work even when Iâ€™m not at work.`,
+  Item_6=`Most days, I feel happiest when the workday is soon to be complete.`,
+  Item_7=`I am happiest when I am immersed in a project.`,
+  Item_8=`I love starting my workday.`,
+  Item_9=`I devote more time than is expected of me.`,
+  Item_10=`I have to be reminded to take breaks while Iâ€™m at work.`,
+  Item_11=`I never miss a work deadline.`,
+  Item_12=`I never allow distractions to interfere with my work.`,
+  Item_13=`I devote my full attention to my work tasks throughout the day.`,
+  Item_14=`Thinking about work saps my energy.`,
+  Item_15=`I would rather direct my focus toward a work task than a personal task.`,
+  Item_16=`Iâ€™m able to maintain good levels of energy throughout the workday.`,
+  Item_17=`I enjoy spending time completing my job tasks.`,
+  Item_18=`Most days I feel enthusiastic about starting my work day.`,
+  Item_19=`I feel motivated to go beyond what is asked of me.`,
+  Item_20=`This job drains my energy.`,
+  Item_21=`When work is slow I find ways to be productive.`,
+  Item_22=`I express enthusiasm for my job while at work.`,
+  Item_23=`I try my best to perform well at work.`,
+  Item_24=`If I notice my energy level is low, I take corrective steps to re-energize.`,
+  Item_25=`I plan my future with this company.`,
+  Item_26=`I believe this company cares about my career goals.`,
+  Item_27=`I often think about finding another job.`,
+  Item_28=`This organization challenges me to work at my full potential.`,
+  Item_29=`I am proud to be a member of this organization.`,
+  Item_30=`I feel supported by my supervisor when I fail at a task.`,
+  Item_31=`I feel proud of my accomplishments within this organization.`,
+  Item_32=`My job makes me feel like Iâ€™m part of something meaningful.`,
+  Item_33=`I make valued contributions to the organization.`,
+  Item_34=`I embrace challenging situations at work.`,
+  Item_35=`I speak positively about this organization to others.`,
+  Item_36=`This organization provides the resources necessary for me to successfully perform my job.`
+) %>% 
+  select(Item_1,Item_2,Item_3,Item_4,Item_5,Item_6,Item_7,Item_8,Item_9,Item_10,Item_11,Item_12,Item_13,Item_14,Item_15,Item_16,Item_17,
+         Item_18,Item_19,Item_20,Item_21,Item_22,Item_23,Item_24,Item_25,Item_26,Item_27,Item_28,Item_29,Item_30,Item_31,Item_32,Item_33,
+         Item_34,Item_35,Item_36)
+
+
+# Condition 4 _________________________________________________________________________________________
+Cond4_Model<-cond4.red[,2:37]
+
+Cond4_Model<-Cond4_Model%>%rename(
+  Item_1=`Iâ€™m able to concentrate on my work without distractions.`,
+  Item_2=`I have a hard time detaching mentally from my work.`,
+  Item_3=`Time passes quickly while Iâ€™m working.`,
+  Item_4=`I find it difficult to mentally disconnect from work.`,
+  Item_5=`I enjoy thinking about work even when Iâ€™m not at work.`,
+  Item_6=`Most days, I feel happiest when the workday is soon to be complete.`,
+  Item_7=`I am happiest when I am immersed in a project.`,
+  Item_8=`I love starting my workday.`,
+  Item_9=`I devote more time than is expected of me.`,
+  Item_10=`I have to be reminded to take breaks while Iâ€™m at work.`,
+  Item_11=`I never miss a work deadline.`,
+  Item_12=`I never allow distractions to interfere with my work.`,
+  Item_13=`I devote my full attention to my work tasks throughout the day.`,
+  Item_14=`Thinking about work saps my energy.`,
+  Item_15=`I would rather direct my focus toward a work task than a personal task.`,
+  Item_16=`Iâ€™m able to maintain good levels of energy throughout the workday.`,
+  Item_17=`I enjoy spending time completing my job tasks.`,
+  Item_18=`Most days I feel enthusiastic about starting my work day.`,
+  Item_19=`I feel motivated to go beyond what is asked of me.`,
+  Item_20=`This job drains my energy.`,
+  Item_21=`When work is slow I find ways to be productive.`,
+  Item_22=`I express enthusiasm for my job while at work.`,
+  Item_23=`I try my best to perform well at work.`,
+  Item_24=`If I notice my energy level is low, I take corrective steps to re-energize.`,
+  Item_25=`I plan my future with this company.`,
+  Item_26=`I believe this company cares about my career goals.`,
+  Item_27=`I often think about finding another job.`,
+  Item_28=`This organization challenges me to work at my full potential.`,
+  Item_29=`I am proud to be a member of this organization.`,
+  Item_30=`I feel supported by my supervisor when I fail at a task.`,
+  Item_31=`I feel proud of my accomplishments within this organization.`,
+  Item_32=`My job makes me feel like Iâ€™m part of something meaningful.`,
+  Item_33=`I make valued contributions to the organization.`,
+  Item_34=`I embrace challenging situations at work.`,
+  Item_35=`I speak positively about this organization to others.`,
+  Item_36=`This organization provides the resources necessary for me to successfully perform my job.`
+) %>% 
+  select(Item_1,Item_2,Item_3,Item_4,Item_5,Item_6,Item_7,Item_8,Item_9,Item_10,Item_11,Item_12,Item_13,Item_14,Item_15,Item_16,Item_17,
+         Item_18,Item_19,Item_20,Item_21,Item_22,Item_23,Item_24,Item_25,Item_26,Item_27,Item_28,Item_29,Item_30,Item_31,Item_32,Item_33,
+         Item_34,Item_35,Item_36)
+
+
+# Reneta's 18-Items______________________________________________________
+
+### Getting all together
+
+Cond1_Model$Cond <- "Cond1"
+Cond2_Model$Cond <- "Cond2"
+Cond3_Model$Cond <- "Cond3"
+Cond4_Model$Cond <- "Cond4"
+
+SIOPmi <- as.data.frame(rbind(Cond1_Model,Cond2_Model,Cond3_Model,Cond4_Model))
 ```
 
-Or with figures: Figure \@ref(fig:standard-plot), or Figure \@ref(fig:morefigs).
 
-
-```{r morefigs, out.width='80%', echo=TRUE, fig.cap='Amazing, right?!', fig.height=5}
+```{r}
 
 ```
+
 
 # Next Steps
 

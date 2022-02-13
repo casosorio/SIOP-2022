@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+
+
+
+<title>Generate Reproducible &amp; Live HTML and PDF Conference Posters Using RMarkdown</title>
+
+<script src="Poster-2022-SIOP_files/header-attrs-2.11/header-attrs.js"></script>
+
+
+
+
+
+<style>
+@page {
+size: 45in 38in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 45px;
+width: 45in;
+height: 38in;
+padding: 0;
+text-align: justify;
+font-family: Palatino;
+}
+.poster_wrap {
+width: 45in;
+height: 38in;
+padding: 0cm;
+}
+.title_container {
+width: 45in;
+height: calc(38in * 0.15);
+overflow: hidden;
+background-color: #0b4545;
+border: 0 solid #0b4545;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Palatino;
+}
+/* unvisited link */
+a:link {
+color: #cc0000;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #cc0000;
+}
+
+/* mouse over link */
+a:hover {
+color: #cc0000;
+}
+
+/* selected link */
+a:active {
+color: #cc0000;
+}
+.poster_body {
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #0b4545;
+-moz-column-rule-color: #0b4545;
+column-rule-color: #0b4545;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 75pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(45in + 0 + 0);
+height: calc(38in * 0.83);
+padding-top: calc(38in * 0.005);
+padding-bottom: calc(38in * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #ffffff;
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFFFFF;
+font-size: 35pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #0b4545;
+background-color: #0b4545;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #00808024;
+color: #0b4545;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 20pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+<img src= 'https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png' style="width: 80%">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Generate Reproducible &amp; Live HTML and PDF Conference Posters Using RMarkdown</h1>
+<h3 id="author">Brent Thorne<sup>1, <a class="orcid" href="https://orcid.org/0000-0002-1099-3857"><img src="https://raw.githubusercontent.com/brentthorne/posterdown/master/images/orcid.jpg"></a></sup>, Another G. Author<sup>2</sup></h3><br>
+<h5 id="affiliation"><sup>1</sup> Department of Earth Science, Brock University<br> <sup>2</sup> Department of Graphics and Layouts, University of Posters; Canada</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+<img src=https://raw.githubusercontent.com/brentthorne/posterdown/master/images/betterhexlogo.png style="width: 80%">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The roots of employee (aka work; e.g., Schaufeli &amp; Bakker, 2010) engagement research likely started with theoretical expansions of forms of employee participation (see, for example, Ferris &amp; Hellier, 1984) and job involvement (e.g., Elloy, Everett, &amp; Flynn, 1991). This exploration extended into broader considerations of attitudes and emotions (Staw, Sutton, &amp; Pelled, 1994) and were informed by further exploration of the dimensionality of constructs such as organizational commitment (Meyer &amp; Allen, 1991). The 1990’s saw focused development and refinement (for example, a dissertation; Leone [1995] or actual semantic reference; Kahn [1990]). Staw et al. (1994) investigated the relationships between positive emotions and favorable work outcomes, and although they do not use the word, “engagement,” their distinction between felt and expressed emotion likely held influence upon the burgeoning interest in the engagement construct.</p>
+<div id="engagement" class="section level2">
+<h2>Engagement</h2>
+<p>Although occasionally referred to as residing on the opposing pole to burnout (Maslach &amp; Leiter, 2008), these two constructs are currently most commonly conceptualized as being distinct (Goering, Shimazu, Zhou, Wada, &amp; Sakai, 2017; Kim, Shin, &amp; Swanger, 2009; Schaufeli, Taris, &amp; Van Rhenen, 2008; Timms, Brough, &amp; Graham, 2012), although certainly not universally (Cole, Walter, Bedeian, &amp; O’Boyle, 2012; Taris, Ybema, &amp; Beek, 2017). Comparing the two, Goering et al. (2017) concluded that they have a moderate (negative) association, but also distinct nomological networks. Schaufeli et al. (2008) investigated both internal and external association indicators, concluding that engagement and burnout (as well as workaholism) should be considered three distinct constructs.
+Burnout can be defined as a psychological syndrome characterized by exhaustion (low energy), cynicism (low involvement), and inefficacy (low self-efficacy), which is experienced in response to chronic job stressors (e.g., Leiter &amp; Maslach, 2004; Maslach &amp; Leiter, 1997). Alternatively, engagement refers to an individual worker’s involvement and satisfaction as well as enthusiasm for work (Harter, Schmidt, &amp; Hayes, 2002). Schaufeli and Bakker (2003) further specify a “positive, fulfilling, work-related state of mind that is characterized by vigor, dedication, and absorption” (p. 74). Via their conceptualization, vigor is described as high levels of energy and mental resilience while working. Dedication refers to being strongly involved in one’s work and experiencing a sense of significance, enthusiasm, inspiration, pride, and challenge. Absorption is characterized by being fully concentrated and happily engrossed in one’s work, whereby time passes quickly and one has difficulties with detaching oneself from work (Schaufeli, Salanova, González-Romá, &amp; Bakker, 2002). The dimension of absorption has been noted as being influenced in conceptual specification by (Csikszentmihalyi, 1990)’s concept of “flow.”</p>
+<p>Like many other constructs within the psychology literature, our knowledge of engagement has been at least partially informed by its measurement and documented association with other work attitudes and behaviors. There are currently many engagement scales used for either academic or applied purposes (and sometimes both). In addition to the aforementioned Gallup Q12, popular measures include the Utrecht Work Engagement Scale (UWES; Schaufeli et al., 2002), the ISA engagement scale (Phuangthuean et al., 2018), the Saks (2006; 2019) scale, and May et al. (2004) scale. These scales differ in the number and content of dimensions. For example, the ISA divides engagement into intellectual, social, and affective components. Saks specifies two scales. The Utrecht Work Engagement Scale (UWES) has been subject to criticism focused on the three subscales (vigor, dedication, and absorption) being so highly correlated that it may be argued that a unidimensional structure may be a better structural representation than the three-factor model (Kulikowski, 2017; Willmer et al., 2019).</p>
+<p>We retain the vigor-dedication-absorption structure put forth in Schaufeli et al. (2002) and also specified in the UWES as the foundation for our construct definition. This model is not without criticism, however. Some researchers have questioned its structural validity by pointing out that vigor, dedication and absorption all correlate highly with each other (Kulikowski, 2017). We believe that some of the inter-construct association may be able to be accounted for when attitudinal components are additionally and simultaneously recognized. That is, it is possible that the constructs have distinction but the most commonly leveraged measure does not. The current study focuses on a new measure of engagement that crosses the substantive construct dimensions of vigor, dedication, and absorption with the attitudinal components of affect, cognition, and behavior.</p>
+<p>Engagement as an attitude. The first (to our knowledge) use of the word “engagement” as a construct of organizational relevance came with Kahn (1990), who defined engagement as: “the harnessing of organization members’ selves to their work roles; in engagement, people employ and express themselves physically, cognitively, and emotionally during role performances.” Although this definition was quickly outpaced by subsequent respecifications (see, for example, Baumruk, 2004 and Shaw, 2005), Kahn (1990)’s definition is notable in that it conforms to the then-ascendant tripartite model of attitudes proposed by Rosenberg (1960). This model frames attitudes as latent variables that manifest cognitively, affectively and behaviorally. Even though it is not specifically a work engagement model, the tripartite model has helped researchers define and deconstruct attitudes to gain a better understanding of individuals’ reactions towards specific attitude objects (Kaiser and Wilson, 2019).</p>
+</div>
+</div>
+<div id="current-study" class="section level1">
+<h1>Current Study</h1>
+<p>Our presentation investigates the impact of item ordering on factor structure, and we do so from the unique perspective of an instrument that is intentionally saturated with two different structural components: 1) an attitudinal structure, and 2) a substantive construct structure. This structure permits the strategic ordering of items to respondents such that one structure may be emphasized over the other.
+Regarding the substantive structure, this measure operationalizes work engagement as a mental state wherein employees: a) feel energized (Vigor), b) are enthusiastic about the content of their work and the things they do (Dedication), and c) are so immersed in their work activities that time seems compressed (Absorption). The attitudinal structure is comprised of three components: d) feeling (e.g., affect), e) thought (e.g., cognition), and f) action (e.g., behavior). Development and construct validation of this 18-item measure of engagement is described in Russell et al. (2022) whereas the current study focuses on administrative response cues in the form of order of item presentation. The expectation is that either model (attitudinal or substantive) will exhibit stronger factorial validity when item administration parallels latent structure.</p>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<div id="participants" class="section level2">
+<h2>Participants</h2>
+<p>Data was obtained from two sources. In the first sampling, 282 individuals responded to a snowball sampling initiated by Industrial and Organizational Psychology faculty and graduate students. There were four counterbalanced orderings of item presentations within this administration, as well as an additional 18 contextual items - this sample constituted the original scale development sample, and at the time of administration the additional contextual items were candidates for item retention. In the second data collection initiative, Qualtrics panels were solicited. These US workforce representative adults responded to two counterbalanced orderings of the focal 18 items along with 2 additional contextual items. These Qualtrics respondents included 343 who responded to attitudinally clustered items and 404 who responded to substantively clustered items.</p>
+</div>
+<div id="materials" class="section level2">
+<h2>Materials</h2>
+<p>Our 18-item engagement measure was crafted to be intentionally complex (each item is intended to load on two constructs). This complexity, however, derives from a crossing of the attitudinal components of affect, cognition, and behavior with the substantive engagement components of vigor, dedication, and absorption. The 6-point response scale is: Strongly Disagree, Disagree, Somewhat Disagree, Somewhat Agree, Agree, Strongly Agree. The item stems as well as their intended scale associations are presented in Table 1.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>Usually you want to have a nice table displaying some important results that you have calculated. In <code>posterdown</code> this is as easy as using the <code>kable</code> table formatting you are probably use to as per typical R Markdown formatting.</p>
+<p>You can reference tables like so: Table <a href="#tab:mytable"><strong>??</strong></a>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat augue at velit tincidunt semper. Donec elementum porta posuere. Nullam interdum, odio at tincidunt feugiat, turpis nisi blandit eros, eu posuere risus felis non quam. Nam eget lorem odio. Duis et aliquet orci. Phasellus nec viverra est.</p>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.7
+## v tidyr   1.1.4     v stringr 1.4.0
+## v readr   2.1.1     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p>Or with figures: Figure <a href="#fig:standard-plot"><strong>??</strong></a>, or Figure <a href="#fig:morefigs"><strong>??</strong></a>.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next Steps</h1>
+<p>Aliquam sed faucibus risus, quis efficitur erat. Vestibulum semper mauris quis tempus eleifend. Aliquam sagittis dictum ipsum, quis viverra ligula eleifend ut. Curabitur sagittis vitae arcu eget faucibus. In non elementum felis. Duis et aliquam nunc. Nunc pulvinar sapien nunc, vel pretium nisi efficitur in. Fusce fringilla maximus leo et maximus. Fusce at ligula laoreet, iaculis mi at, auctor odio. Praesent sed elementum justo. Aenean consectetur risus rhoncus tincidunt efficitur. Praesent dictum mauris at diam maximus maximus <span class="citation">(Thorne 2019)</span>.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Try <code>posterdown</code> out! Hopefully you like it!</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-posterdown" class="csl-entry">
+Thorne, Brent. 2019. <em>Posterdown: Generate PDF Conference Posters Using r Markdown</em>. <a href="https://github.com/brentthorne/posterdown">https://github.com/brentthorne/posterdown</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
