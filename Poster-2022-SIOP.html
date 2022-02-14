@@ -23,6 +23,8 @@ Google fonts api stuff
 
 <script src="Poster-2022-SIOP_files/header-attrs-2.11/header-attrs.js"></script>
 
+<script src="Poster-2022-SIOP_files/kePrint-0.0.1/kePrint.js"></script>
+<link href="Poster-2022-SIOP_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -303,8 +305,6 @@ font-size: 20pt;
 <h2>Engagement</h2>
 <p>Although occasionally referred to as residing on the opposing pole to burnout (Maslach &amp; Leiter, 2008), these two constructs are currently most commonly conceptualized as being distinct (Goering, Shimazu, Zhou, Wada, &amp; Sakai, 2017; Kim, Shin, &amp; Swanger, 2009; Schaufeli, Taris, &amp; Van Rhenen, 2008; Timms, Brough, &amp; Graham, 2012), although certainly not universally (Cole, Walter, Bedeian, &amp; O’Boyle, 2012; Taris, Ybema, &amp; Beek, 2017). Comparing the two, Goering et al. (2017) concluded that they have a moderate (negative) association, but also distinct nomological networks. Schaufeli et al. (2008) investigated both internal and external association indicators, concluding that engagement and burnout (as well as workaholism) should be considered three distinct constructs.
 Burnout can be defined as a psychological syndrome characterized by exhaustion (low energy), cynicism (low involvement), and inefficacy (low self-efficacy), which is experienced in response to chronic job stressors (e.g., Leiter &amp; Maslach, 2004; Maslach &amp; Leiter, 1997). Alternatively, engagement refers to an individual worker’s involvement and satisfaction as well as enthusiasm for work (Harter, Schmidt, &amp; Hayes, 2002). Schaufeli and Bakker (2003) further specify a “positive, fulfilling, work-related state of mind that is characterized by vigor, dedication, and absorption” (p. 74). Via their conceptualization, vigor is described as high levels of energy and mental resilience while working. Dedication refers to being strongly involved in one’s work and experiencing a sense of significance, enthusiasm, inspiration, pride, and challenge. Absorption is characterized by being fully concentrated and happily engrossed in one’s work, whereby time passes quickly and one has difficulties with detaching oneself from work (Schaufeli, Salanova, González-Romá, &amp; Bakker, 2002). The dimension of absorption has been noted as being influenced in conceptual specification by (Csikszentmihalyi, 1990)’s concept of “flow.”</p>
-<p>Like many other constructs within the psychology literature, our knowledge of engagement has been at least partially informed by its measurement and documented association with other work attitudes and behaviors. There are currently many engagement scales used for either academic or applied purposes (and sometimes both). In addition to the aforementioned Gallup Q12, popular measures include the Utrecht Work Engagement Scale (UWES; Schaufeli et al., 2002), the ISA engagement scale (Phuangthuean et al., 2018), the Saks (2006; 2019) scale, and May et al. (2004) scale. These scales differ in the number and content of dimensions. For example, the ISA divides engagement into intellectual, social, and affective components. Saks specifies two scales. The Utrecht Work Engagement Scale (UWES) has been subject to criticism focused on the three subscales (vigor, dedication, and absorption) being so highly correlated that it may be argued that a unidimensional structure may be a better structural representation than the three-factor model (Kulikowski, 2017; Willmer et al., 2019).</p>
-<p>We retain the vigor-dedication-absorption structure put forth in Schaufeli et al. (2002) and also specified in the UWES as the foundation for our construct definition. This model is not without criticism, however. Some researchers have questioned its structural validity by pointing out that vigor, dedication and absorption all correlate highly with each other (Kulikowski, 2017). We believe that some of the inter-construct association may be able to be accounted for when attitudinal components are additionally and simultaneously recognized. That is, it is possible that the constructs have distinction but the most commonly leveraged measure does not. The current study focuses on a new measure of engagement that crosses the substantive construct dimensions of vigor, dedication, and absorption with the attitudinal components of affect, cognition, and behavior.</p>
 <p>Engagement as an attitude. The first (to our knowledge) use of the word “engagement” as a construct of organizational relevance came with Kahn (1990), who defined engagement as: “the harnessing of organization members’ selves to their work roles; in engagement, people employ and express themselves physically, cognitively, and emotionally during role performances.” Although this definition was quickly outpaced by subsequent respecifications (see, for example, Baumruk, 2004 and Shaw, 2005), Kahn (1990)’s definition is notable in that it conforms to the then-ascendant tripartite model of attitudes proposed by Rosenberg (1960). This model frames attitudes as latent variables that manifest cognitively, affectively and behaviorally. Even though it is not specifically a work engagement model, the tripartite model has helped researchers define and deconstruct attitudes to gain a better understanding of individuals’ reactions towards specific attitude objects (Kaiser and Wilson, 2019).</p>
 </div>
 </div>
@@ -336,7 +336,156 @@ Regarding the substantive structure, this measure operationalizes work engagemen
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<p>Or with figures: Figure <a href="#fig:standard-plot"><strong>??</strong></a>, or Figure <a href="#fig:morefigs"><strong>??</strong></a>.</p>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>Measurement invariance summary statitics (attudinal structure)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;text-align: center;">
+</th>
+<th style="text-align:center;text-align: center;">
+Df
+</th>
+<th style="text-align:center;text-align: center;">
+AIC
+</th>
+<th style="text-align:center;text-align: center;">
+BIC
+</th>
+<th style="text-align:center;text-align: center;">
+Chisq
+</th>
+<th style="text-align:center;text-align: center;">
+Chisq diff
+</th>
+<th style="text-align:center;text-align: center;">
+Df diff
+</th>
+<th style="text-align:center;text-align: center;">
+Pr (&gt;Chisq)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+configural.a
+</td>
+<td style="text-align:center;">
+528
+</td>
+<td style="text-align:center;">
+13,645.98
+</td>
+<td style="text-align:center;">
+14,453.38
+</td>
+<td style="text-align:center;">
+1,117.59
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+weak.a
+</td>
+<td style="text-align:center;">
+573
+</td>
+<td style="text-align:center;">
+13,614.45
+</td>
+<td style="text-align:center;">
+14,262.50
+</td>
+<td style="text-align:center;">
+1,176.06
+</td>
+<td style="text-align:center;">
+58.48
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+strong.a
+</td>
+<td style="text-align:center;">
+618
+</td>
+<td style="text-align:center;">
+13,569.48
+</td>
+<td style="text-align:center;">
+14,058.18
+</td>
+<td style="text-align:center;">
+1,221.09
+</td>
+<td style="text-align:center;">
+45.03
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+strict.a
+</td>
+<td style="text-align:center;">
+672
+</td>
+<td style="text-align:center;">
+13,538.35
+</td>
+<td style="text-align:center;">
+13,835.82
+</td>
+<td style="text-align:center;">
+1,297.96
+</td>
+<td style="text-align:center;">
+76.87
+</td>
+<td style="text-align:center;">
+54
+</td>
+<td style="text-align:center;">
+0.02
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Note.</span> <sup></sup> <em>p &lt; 0.05; <strong> p &lt; 0.01; </strong></em> p&lt;0.001
+</td>
+</tr>
+</tfoot>
+</table>
 </div>
 <div id="next-steps" class="section level1">
 <h1>Next Steps</h1>
