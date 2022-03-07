@@ -357,30 +357,77 @@ siop$Item_14 <- 7-siop$Item_14
 
 library(knitr)
 library(kableExtra)
+library(lavaan)
+substantive <-'
+Absorption=~Item_1 + Item_3  + Item_5  + Item_8  + Item_10 + Item_11
+Vigor=~Item_14 + Item_16 + Item_17 + Item_19 + Item_21 + Item_22
+Dedication=~Item_26 + Item_28 + Item_31 + Item_32 + Item_34 + Item_35
+'
+fullsub <- lavaan::cfa(substantive, data = siop); plotfullsub <- fullsub
+fullsub <- as.data.frame(fitMeasures(fullsub))
+fullsub$rounded <- round(fullsub$`fitMeasures(fullsub)`,2)
+t.fullsub <- fullsub %>% 
+  select(Substantive=rounded) 
+t.fullsub <- as.data.frame(t(t.fullsub[c(3,4,5,23,29,9,10,19),]))        ## Chi-sq, df, RMSEA, SRMR, CFI, TLI, AIC
 
-tab_01 = data.frame(
-  Name = c("configural.a", "weak.a", "strong.a", "strict.a"),
-  Df = c("528", "573", "618", "672"),
-  AIC = c("13,645.98", "13,614.45", "13,569.48", "13,538.35"),
-  BIC = c("14,453.38", "14,262.50", "14,058.18", "13,835.82"),
-  Chisq = c("1,117.59", "1,176.06", "1,221.09", "1,297.96"),
-  `Chisq diff` = c("NA","58.48","45.03","76.87"),
-  `Df diff` = c("NA", "45", "45", "54"),
-  `Pr(>Chisq)` = c("NA", "0.09", "0.47", "0.02")
-)
+attiduinal <-'
+Cognitive=~Item_1+Item_3+ Item_14 + Item_16 + Item_26 + Item_28
+Affective=~Item_5+Item_8+ Item_17 + Item_19 + Item_31 + Item_32
+Behavioral=~Item_10+Item_11 + Item_21 + Item_22 + Item_34 + Item_35
+'
+
+pilot <- siop[ which(siop$Cond == 'Cond1' | siop$Cond == 'Cond2' | siop$Cond == 'Cond3' | siop$Cond == 'Cond4'), ]
+pilot <- pilot[,c(1:19)]
+
+
+
+configural.a <- cfa(model=attiduinal, data=pilot, group="Cond") # configural invariance
+weak.a <- cfa(model=attiduinal, data=pilot, group="Cond", group.equal="loadings") # weak invariance
+strong.a <- cfa(model=attiduinal, data=pilot, group="Cond", group.equal=c("intercepts", "loadings")) # strong invariance
+strict.a <- cfa(model=attiduinal, data=pilot, group="Cond", group.equal=c("loadings", "intercepts", "residuals"))
+
+fittab <- lavTestLRT(configural.a,weak.a,strong.a, strict.a)
+
+
+configural.s <- cfa(model=substantive, data=pilot, group="Cond") # configural invariance
+weak.s <- cfa(model=substantive, data=pilot, group="Cond", group.equal="loadings") # weak invariance
+strong.s <- cfa(model=substantive, data=pilot, group="Cond", group.equal=c("intercepts", "loadings")) # strong invariance
+strict.s <- cfa(model=substantive, data=pilot, group="Cond", group.equal=c("loadings", "intercepts", "residuals"))
+
+fittab2 <- lavTestLRT(configural.s,weak.s,strong.s, strict.s)
+
+siop2 <- siop[1:19]
+
+configural.a2 <- cfa(model=attiduinal, data=siop2, group="Cond") # configural invariance
+weak.a2 <- cfa(model=attiduinal, data=siop2, group="Cond", group.equal="loadings") # weak invariance
+strong.a2 <- cfa(model=attiduinal, data=siop2, group="Cond", group.equal=c("intercepts", "loadings")) # strong invariance
+strict.a2 <- cfa(model=attiduinal, data=siop2, group="Cond", group.equal=c("loadings", "intercepts", "residuals"))
+# summary(configural, fit.measures=TRUE)
+
+## changed above to only adults
+
+fittab3 <- lavTestLRT(configural.a2,weak.a2,strong.a2, strict.a2)
+
+configural.s2 <- cfa(model=substantive, data=siop2, group="Cond") # configural invariance
+weak.s2 <- cfa(model=substantive, data=siop2, group="Cond", group.equal="loadings") # weak invariance
+strong.s2 <- cfa(model=substantive, data=siop2, group="Cond", group.equal=c("intercepts", "loadings")) # strong invariance
+strict.s2 <- cfa(model=substantive, data=siop2, group="Cond", group.equal=c("loadings", "intercepts", "residuals"))
+# summary(configural, fit.measures=TRUE)
+
+## changed above to only adults
+
+fittab4 <- lavTestLRT(configural.s2,weak.s2,strong.s2, strict.s2)
+
 
 ```
 
-
-```{r, echo=FALSE, warning=FALSE}
+```{r, fig.cap= "A"}
 kable(
-  tab_01,
+  fittab,
   format = "html",
   booktabs = TRUE,
   escape = FALSE,
   longtable = TRUE,
-  col.names = c("","Df", "AIC", "BIC", "Chisq", "Chisq diff", "Df diff", "Pr (>Chisq)"),
-  align = c("l","c", "c", "c","c", "c", "c", "c", "c", "c"),
   caption = "Measurement invariance summary statitics (attudinal structure)") %>%
   row_spec(row = 0, align = "c") %>%
   kable_styling(full_width = TRUE) %>%
@@ -390,8 +437,103 @@ kable(
     threeparttable = TRUE,
     footnote_as_chunk = TRUE
   )
+```
+
+```{r, fig.cap= "B"}
+kable(
+  fittab2,
+  format = "html",
+  booktabs = TRUE,
+  escape = FALSE,
+  longtable = TRUE,
+  caption = "Measurement invariance summary statitics (substantive structure)") %>%
+  row_spec(row = 0, align = "c") %>%
+  kable_styling(full_width = TRUE) %>%
+  footnote(
+    general_title = "Note.",
+    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
+    threeparttable = TRUE,
+    footnote_as_chunk = TRUE
+  )
+```
+
+```{r, fig.cap= "C"}
+kable(
+  fittab3,
+  format = "html",
+  booktabs = TRUE,
+  escape = FALSE,
+  longtable = TRUE,
+  caption = "Measurement invariance summary statistics (attitudinal structure [6 conditions]).") %>%
+  row_spec(row = 0, align = "c") %>%
+  kable_styling(full_width = TRUE) %>%
+  footnote(
+    general_title = "Note.",
+    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
+    threeparttable = TRUE,
+    footnote_as_chunk = TRUE
+  )
+```
+
+
+```{r, fig.cap= "D"}
+kable(
+  fittab4,
+  format = "html",
+  booktabs = TRUE,
+  escape = FALSE,
+  longtable = TRUE,
+  caption = "Measurement invariance summary statistics (substantive structure [6 conditions]).") %>%
+  row_spec(row = 0, align = "c") %>%
+  kable_styling(full_width = TRUE) %>%
+  footnote(
+    general_title = "Note.",
+    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
+    threeparttable = TRUE,
+    footnote_as_chunk = TRUE
+  )
+```
+
+
+```{r newdata}
+library(lavaan)
+substantive <-'
+Absorption=~Item_1 + Item_3  + Item_5  + Item_8  + Item_10 + Item_11
+Vigor=~Item_14 + Item_16 + Item_17 + Item_19 + Item_21 + Item_22
+Dedication=~Item_26 + Item_28 + Item_31 + Item_32 + Item_34 + Item_35
+'
+fullsub <- lavaan::cfa(substantive, data = siop); plotfullsub <- fullsub
+fullsub <- as.data.frame(fitMeasures(fullsub))
+fullsub$rounded <- round(fullsub$`fitMeasures(fullsub)`,2)
+t.fullsub <- fullsub %>% 
+  select(Substantive=rounded) 
+t.fullsub <- as.data.frame(t(t.fullsub[c(3,4,5,23,29,9,10,19),]))        ## Chi-sq, df, RMSEA, SRMR, CFI, TLI, AIC
+
+attiduinal <-'
+Cognitive=~Item_1+Item_3+ Item_14 + Item_16 + Item_26 + Item_28
+Affective=~Item_5+Item_8+ Item_17 + Item_19 + Item_31 + Item_32
+Behavioral=~Item_10+Item_11 + Item_21 + Item_22 + Item_34 + Item_35
+'
+fullatt <- lavaan::cfa(attiduinal, data = siop); plotfullatt <- fullatt
+fullatt <- as.data.frame(fitMeasures(fullatt))
+fullatt$rounded <- round(fullatt$`fitMeasures(fullatt)`,2)
 
 ```
+
+
+```{r semplotsub, fig.cap="Omnibus Confirmatory Factor Analysis substantive structure."}
+
+semPlot::semPaths(plotfullsub,what="std", sizeLat=10, style="lisrel",
+              sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=2)
+
+```
+
+```{r semplotatt, fig.cap="Omnibus Confirmatory Factor Analysis attitudinal structure."}
+
+semPlot::semPaths(plotfullatt,what="std", sizeLat=10, style="lisrel",
+              sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=2)
+```
+
 
 # Discussion
 When items are presented “together” in terms of conceptual cohesion (either grouped by attitudinal dimension or substantive dimension), the CFAs yielded slightly better fit indicators than when items were not presented in conceptually cohesive groupings. This was true across different levels of cohesive emphasis. There is evidence of at least partial invariance within both administrations. However, the idea of invariance has greater support within the initial four administration conditions than with the second sampling method. 
