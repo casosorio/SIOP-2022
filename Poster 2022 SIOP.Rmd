@@ -18,7 +18,9 @@ column_numbers: 3
 primary_colour: "#640d14"
 secondary_colour: "#ad2831"
 accent_colour: "#38040e"
-#csl: "apa7.csl" # NEED TO FIX THIS
+csl: "apa7.csl" 
+# poster_height: "56"
+# poster_width: "31.5" # can also  56 by 31.5
 logoright_name: https&#58;//raw.githubusercontent.com/Morgan-Russell/SIOP-2022-poster/main/hawk-logo-white.svg
 logoleft_name: https&#58;//raw.githubusercontent.com/Morgan-Russell/SIOP-2022-poster/main/MSU_logo_white.webp
 output: 
@@ -418,84 +420,23 @@ strict.s2 <- cfa(model=substantive, data=siop2, group="Cond", group.equal=c("loa
 
 fittab4 <- lavTestLRT(configural.s2,weak.s2,strong.s2, strict.s2)
 
+table <- read.csv("table.csv")
 
+library(kableExtra)
 ```
 
 ```{r, fig.cap= "A"}
-kable(
-  fittab,
-  format = "html",
-  booktabs = TRUE,
+knitr::kable(
+  table, format = "html",
+  caption = "Summary fit indices across item ordering conditions",
+  align = "l",
   escape = FALSE,
-  longtable = TRUE,
-  caption = "Measurement invariance summary statitics (attudinal structure)") %>%
-  row_spec(row = 0, align = "c") %>%
-  kable_styling(full_width = TRUE) %>%
-  footnote(
-    general_title = "Note.",
-    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
-    threeparttable = TRUE,
-    footnote_as_chunk = TRUE
-  )
-```
-
-```{r, fig.cap= "B"}
-kable(
-  fittab2,
-  format = "html",
-  booktabs = TRUE,
-  escape = FALSE,
-  longtable = TRUE,
-  caption = "Measurement invariance summary statitics (substantive structure)") %>%
-  row_spec(row = 0, align = "c") %>%
-  kable_styling(full_width = TRUE) %>%
-  footnote(
-    general_title = "Note.",
-    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
-    threeparttable = TRUE,
-    footnote_as_chunk = TRUE
-  )
-```
-
-```{r, fig.cap= "C"}
-kable(
-  fittab3,
-  format = "html",
-  booktabs = TRUE,
-  escape = FALSE,
-  longtable = TRUE,
-  caption = "Measurement invariance summary statistics (attitudinal structure [6 conditions]).") %>%
-  row_spec(row = 0, align = "c") %>%
-  kable_styling(full_width = TRUE) %>%
-  footnote(
-    general_title = "Note.",
-    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
-    threeparttable = TRUE,
-    footnote_as_chunk = TRUE
-  )
+  col.names = c("Condition", "Model", "X","Df","RMSEA","SRMR","CFI","TLI","AIC")) %>% kable_styling(bootstrap_options=c("striped", "condensed"))
 ```
 
 
-```{r, fig.cap= "D"}
-kable(
-  fittab4,
-  format = "html",
-  booktabs = TRUE,
-  escape = FALSE,
-  longtable = TRUE,
-  caption = "Measurement invariance summary statistics (substantive structure [6 conditions]).") %>%
-  row_spec(row = 0, align = "c") %>%
-  kable_styling(full_width = TRUE) %>%
-  footnote(
-    general_title = "Note.",
-    general = "*p < 0.05; ** p < 0.01; *** p<0.001",
-    threeparttable = TRUE,
-    footnote_as_chunk = TRUE
-  )
-```
 
-
-```{r newdata}
+```{r newdata, cache=TRUE}
 library(lavaan)
 substantive <-'
 Absorption=~Item_1 + Item_3  + Item_5  + Item_8  + Item_10 + Item_11
