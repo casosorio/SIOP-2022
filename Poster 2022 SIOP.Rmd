@@ -459,20 +459,24 @@ fullatt <- lavaan::cfa(attiduinal, data = siop); plotfullatt <- fullatt
 fullatt <- as.data.frame(fitMeasures(fullatt))
 fullatt$rounded <- round(fullatt$`fitMeasures(fullatt)`,2)
 
-```
-
-
-```{r semplotsub, fig.cap="Omnibus Confirmatory Factor Analysis substantive structure."}
-
+svg("image1.svg")
 semPlot::semPaths(plotfullsub,what="std", sizeLat=10, style="lisrel",
               sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=2)
+#dev.off()
+#knitr::include_graphics("image1.svg", dpi = 1000)
+
+svg("image2.svg")
+semPlot::semPaths(plotfullatt,what="std", sizeLat=10, style="lisrel",
+              sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=2)
 
 ```
 
-```{r semplotatt, fig.cap="Omnibus Confirmatory Factor Analysis attitudinal structure."}
+```{r semplotsub, fig.cap="Omnibus Confirmatory Factor Analysis substantive structure.", out.width="100%"}
+knitr::include_graphics("image1.svg", dpi = 1000)
+```
 
-semPlot::semPaths(plotfullatt,what="std", sizeLat=10, style="lisrel",
-              sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=2)
+```{r semplotatt, fig.cap="Omnibus Confirmatory Factor Analysis attitudinal structure.", out.width="100%"}
+knitr::include_graphics("image2.svg", dpi = 1000)
 ```
 
 
