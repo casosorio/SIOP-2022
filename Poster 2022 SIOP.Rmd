@@ -467,15 +467,15 @@ semPlot::semPaths(plotfullsub,what="std", sizeLat=10, style="lisrel",
 
 svg("image2.svg")
 semPlot::semPaths(plotfullatt,what="std", sizeLat=10, style="lisrel",
-              sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=2)
+              sizeMan=4.5,edge.label.cex=0.75, edge.color="black", asize=2, rotation=4)
 
 ```
 
-```{r semplotsub, fig.cap="Omnibus Confirmatory Factor Analysis substantive structure.", out.width="100%"}
+```{r semplotsub, fig.cap="Omnibus Confirmatory Factor Analysis substantive structure.", out.height="80%", fig.align ='center', out.width= "90%"}
 knitr::include_graphics("image1.svg", dpi = 1000)
-```
+``` 
 
-```{r semplotatt, fig.cap="Omnibus Confirmatory Factor Analysis attitudinal structure.", out.width="100%"}
+```{r semplotatt, fig.cap="Omnibus Confirmatory Factor Analysis attitudinal structure.", out.height="80%", fig.align= 'center', out.width= "90%"}
 knitr::include_graphics("image2.svg", dpi = 1000)
 ```
 
