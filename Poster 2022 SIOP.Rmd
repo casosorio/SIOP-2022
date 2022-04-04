@@ -35,17 +35,29 @@ bibliography: packages.bib
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Introduction
-The roots of employee (aka work; e.g., Schaufeli & Bakker, 2010) engagement research likely started with theoretical expansions of forms of employee participation and job involvement (e.g., Elloy, Everett, & Flynn, 1991). Like many other constructs within the psychology literature, our knowledge of engagement has been at least partially informed by its measurement and documented association  with other work attitudes and behaviors. There are currently many engagement scales used for either academic and/or applied purpose (for example, UWES, ISA, Saks, etc). For the engagement survey  under development as part of a larger study, we retain the vigor-dedication-absorption structure put forth in Schaufeli et el., (2002). This measure operationalizes work engagement as a mental state wherein employees: a) feel energized (Vigor), b) are enthusiastic about the content of their work and the things they do (Dedication), and c) are so immersed in their work activities that time seems compressed (Absorption). The attitudinal structure is comprised of three components: d) feeling (e.g., affect), e) thought (e.g., cognition), and f) action (e.g., behavior). 
 
-This study examines the impact of item ordering on factor structure using an instrument that is intentionally saturated with two different structural components: 1) an attitudinal structure, and 2) a substantive construct structure. 
+```{css, echo=FALSE}
+
+p.caption {
+  font-size: 1em;         /* This sets figure caption font size */
+  text-align: left
+}
+
+```
+
+# Introduction
+The roots of employee (aka *work*; e.g., Schaufeli & Bakker, 2010) engagement research likely started with theoretical expansions of forms of employee participation and job involvement (e.g., Elloy, Everett, & Flynn, 1991). Like many other constructs within the I-O psychology field, our knowledge of engagement has been at least partially informed by its measurement and documented association  with other work attitudes and behaviors. There are currently many engagement scales used for either academic and/or applied purposes (for example, the [UWES](https://journals.sagepub.com/doi/pdf/10.1177/0013164405282471), [ISA](http://eprints.lse.ac.uk/63486/1/ISA_engagement.pdf), or [Q12](http://www.hrbartender.com/images/Gallup.pdf)). 
+
+The current engagement survey is being developed [within a larger study](https://bookdown.org/kulasj/engagetech/), with Schaufeli et el.'s (2002) vigor-dedication-absorption structure forming the substantive element structure:  engagement is a mental state wherein employees: a) feel energized (Vigor), b) are enthusiastic about the content of their work and the things they do (Dedication), and c) are so immersed in their work activities that time seems compressed (Absorption). Additionally, these three components are each measured at three attitudinal levels: d) feeling (e.g., affect), e) thought (e.g., cognition), and f) action (e.g., behavior). 
+
+This study examines the impact of item ordering on factor structure using this measure that is intentionally saturated with two different structural components: 1) attitudinal, and 2) substantive. 
 
 
 # Methods
-There were two samples used for this study. The first was a snowball sample initiated by IO Psychology faculty and graduate students, which resulted in a total of 282 participants. There were four counterbalanced orderings of item presentations within this administration, as well as an additional 18 contextual items. In the second data collection initiative, Qualtrics panels were solicited. These US workforce representative adults responded to two counterbalanced orderings of the focal 18 items along with 2 additional contextual items. The respondents of the second sample included 343 who responded to attitudinally clustered items and 404 who responded to substantively clustered items.
+There were two samples pursued for this study. The first was a snowball sample initiated by I-O Psychology faculty and graduate students, which resulted in a total of 282 participants. There were four counterbalanced orderings of item presentations within this administration, as well as an additional 18 candidate items. In the second data collection initiative, Qualtrics panels were solicited. These US workforce representative adults responded to two counterbalanced orderings of the focal 18 items along with 2 additional candidate items. The respondents of the second sample included 343 who responded to attitudinally clustered items and 404 who responded to substantively clustered items.
 
-## Materials
-Our 18-item engagement measure was crafted to be intentionally complex (each item is intended to load on two constructs). This complexity, however, derives from a crossing of the attitudinal components of affect, cognition, and behavior with the substantive engagement components of vigor, dedication, and absorption. The 6-point response scale is: Strongly Disagree, Disagree, Somewhat Disagree, Somewhat Agree, Agree, Strongly Agree. The item stems as well as their intended scale associations are presented in Table 1.
+# Materials
+Our 20-item engagement measure was crafted to be intentionally complex (each item is intended to load on two constructs). This complexity stems from a crossing of the attitudinal components of affect, cognition, and behavior with the substantive engagement components of vigor, dedication, and absorption. The 6-point response scale is: *Strongly Disagree*, *Disagree*, *Somewhat Disagree*, *Somewhat Agree*, *Agree*, *Strongly Agree*. The item stems as well as their intended scale associations are presented in a concurrent SIOP poster session.
 
 # Results
 Two omnibus confirmatory factor analyses (CFAs) were imposed on the data conforming to the two scale definitions reported in Table 1. Regardless of item ordering, across 1,025 respondents, both models showed fair fit ($χ^2_{substantive}$=995.34, df=132, RMSEA=0.09; $χ^2_{attitudinal}$=1,103.47, df=132, RMSEA=0.09). Additional fit indexes for the two models (as well as models run separately within each condition) are presented in Table 2.Figures 1 and 2 are visual representations of the omnibus CFA models. Table 3 presents unit-weighted scale scores across the three substantive and three attitudinal scales. Omnibus data α’s (across all conditions) were 0.81 (Absorption), 0.91 (Dedication), 0.78 (Vigor), 0.78 (Affect), 0.89 (Cognition), and 0.83 (Behavior).
