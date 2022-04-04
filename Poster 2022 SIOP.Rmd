@@ -1,13 +1,13 @@
 ---
 title: Engagement vs. attitude&#58; Measurement invariance across item orderings
 author:
-  - name: Casey Osorio-Duffoo, MA
+  - name: Casey Osorio-Duffoo
     affil: 2
-  - name: Renata Garcia Prieto Palacios Roji, MA
+  - name: Renata Garcia Prieto Palacios Roji
     affil: 1
   - name: Morgan Russell
     affil: 1
-  - name: John Kulas, PhD
+  - name: John Kulas
     affil: 1
 affiliation:
   - num: 1
@@ -18,6 +18,7 @@ column_numbers: 3
 primary_colour: "#640d14"
 secondary_colour: "#ad2831"
 accent_colour: "#38040e"
+author_textcol:	"#fbffff"
 csl: "apa7.csl" 
 # poster_height: "56"
 # poster_width: "31.5" # can also  56 by 31.5
@@ -25,7 +26,8 @@ logoright_name: https&#58;//raw.githubusercontent.com/Morgan-Russell/SIOP-2022-p
 logoleft_name: https&#58;//raw.githubusercontent.com/Morgan-Russell/SIOP-2022-poster/main/MSU_logo_white.webp
 output: 
   posterdown::posterdown_html:
-    self_contained: false
+    self_contained: true
+knit: pagedown::chrome_print
 bibliography: packages.bib
 ---
 
@@ -434,6 +436,7 @@ knitr::kable(
   caption = "Summary fit indices across item ordering conditions",
   align = "l",
   escape = FALSE,
+  table.attr = "class=\"striped\"",
   col.names = c("Condition", "Model", "X","Df","RMSEA","SRMR","CFI","TLI","AIC")) %>% kable_styling(bootstrap_options=c("striped", "condensed"))
 ```
 
