@@ -22,7 +22,7 @@ author_textcol:	"#fbffff"
 csl: "apa7.csl" 
 # poster_height: "56"
 # poster_width: "31.5" # can also  56 by 31.5
-logoright_name: https&#58;//raw.githubusercontent.com/Morgan-Russell/SIOP-2022-poster/main/hawk-logo-white.svg
+logoright_name: "2022_SIOP_Seattle_Web.png"
 logoleft_name: https&#58;//raw.githubusercontent.com/Morgan-Russell/SIOP-2022-poster/main/MSU_logo_white.webp
 output: 
   posterdown::posterdown_html:
@@ -42,9 +42,20 @@ p.caption {
   text-align: left
 }
 
-t.caption {
-  font-size: 1em;         /* This sets figure caption font size */
-  text-align: left
+.logo_left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 550px;         
+  height: 540px;
+}
+
+.logo_right {
+  position: absolute;
+  top: 20px;
+  left: 3600px;
+  width: 700px;          
+  height: 440px;
 }
 
 ```
@@ -67,7 +78,7 @@ Our 20-item engagement measure was crafted to be intentionally complex (each ite
 
 # Results
 
-Two omnibus confirmatory factor analyses (CFAs) were imposed on the data conforming to the two scale definitions. Regardless of item ordering, across a collapsed sample (n = 1,029) both models exhibited fair fit ($χ^2_{substantive}$ = 995.34, *df* = 132, *RMSEA* = 0.09; $χ^2_{attitudinal}$ = 1,103.47, *df* = 132, *RMSEA* = 0.09). Additional fit indexes for the two models (as well as models run separately within each condition) are presented in Table \@ref(tab:fittable). Figures 1 and 2 are visual representations of the omnibus CFA models. Omnibus data α's (across all conditions) were 0.81 (Absorption), 0.91 (Dedication), 0.78 (Vigor), 0.78 (Affect), 0.89 (Cognition), and 0.83 (Behavior).
+Two omnibus confirmatory factor analyses (CFAs) were imposed on the data conforming to the two scale definitions. Regardless of item ordering, across a collapsed sample (n = 1,029) both models exhibited fair fit ($χ^2_{substantive}$ = 995.34, *df* = 132, *RMSEA* = 0.09; $χ^2_{attitudinal}$ = 1,103.47, *df* = 132, *RMSEA* = 0.09). Additional fit indices for the two models (as well as models run separately within each condition) are presented in Table \@ref(tab:fittable). Figures 1 and 2 are visual representations of the omnibus CFA models. Omnibus data α's (across all conditions) were 0.81 (Absorption), 0.91 (Dedication), 0.78 (Vigor), 0.78 (Affect), 0.89 (Cognition), and 0.83 (Behavior).
 
 The anticipated order effects emerged as predicted from all six clustered item ordering conditions, but were quite moderate (for example, $Δχ^2_{Cond1}$ = 9.55, $ΔAIC_{Cond1}$ = 10.53). Measurement invariance was evaluated across a series of progressively greater restrictive conditions. Because our six conditions were realized across two qualitatively different sampling procedures, we applied our analyses of measurement invariance twice. The initial snowball sample across four counterbalanced conditions can be reasonably characterized as exhibiting strong/scalar invariance for the attitudinal structure and marginally attaining scalar invariance for the substantive CFA. Secondly, the follow-up Qualtrics panel respondents there was evidence of weak/metric invariance for the substantive CFA across the two Qualtrics item orderings ($ΔΧ^2$ = 13.84, *df* = 15, *p* = .54), but a lack of invariance for the attitudinal model.
 
@@ -507,7 +518,7 @@ knitr::include_graphics("image2.svg", dpi = 1000)
 
 Through counterbalancing the order of item presentation, we provide response cues regarding structural priority. Analyses of measurement invariance reveal generally positive support for invariance across item orderings. When items are presented "together" in terms of conceptual cohesion (either grouped by attitudinal dimension or substantive dimension), the CFAs yielded slightly better fit indicators than when items were not presented in conceptually cohesive groupings. This was true across different levels of cohesive emphasis. There is evidence of at least partial invariance within both administrations. However, the idea of invariance has greater support within the initial four administration conditions than with the second sampling method.
 
-The practical implication is that item ordering perhaps does not matter so much. We were in a unique circumstance regarding the opportunity to manipulate different meaningful groupings because our focal measure is intentionally complex. The item ordering literature does fairly consistently claim better reliability of assessment scores later in a sequence of similar items, and this was not evaluated in the current study, but could be the focus of future investigations.
+It is certainly feasible that the content cue becomes more powerful as respondents become more fatigued (e.g., with truly longer assessments). In a similar consideration, it is possible that our scales were SO short that the respondents did not pick up on the cue (“hey – these are all asking about how I feel [or think, or act]”). Longer scales would represent a stronger manipulation in the sense that there is greater opportunity for the cue to be perceived. This poster was created via `posterdown` (Thorne, 2022).
 
 ```{r, include=FALSE}
 knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
